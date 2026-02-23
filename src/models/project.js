@@ -11,8 +11,9 @@ export class Project {
 
     deleteItem(id) {
         this.items = this.items.filter((item) => {
-            item.id !== id;
+            return item.id !== id;
         });
+        console.log(this.items)
     }
 
     getItemFromId(id) {

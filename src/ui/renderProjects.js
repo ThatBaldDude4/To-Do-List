@@ -1,6 +1,6 @@
-export function renderItem(item) {
+function renderItem(item) {
     const container = document.createElement("div");
-    const title = document.createElement("h2");
+    const title = document.createElement("h3");
     const text = document.createElement("p");
 
     container.setAttribute("data-item-id", item.id);
@@ -16,7 +16,7 @@ export function renderItem(item) {
     return container;
 }
 
-export function renderProject(project) {
+export default function renderProject(project) {
     const container = document.createElement("div");
     const h2 = document.createElement("h2");
     const itemContainer = document.createElement("div");
