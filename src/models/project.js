@@ -9,14 +9,15 @@ export class Project {
         this.items.push(item);
     }
 
-    deleteItem(item) {
-        const index = this.items.indexOf(item);
-        this.items.splice(index, 1);
+    deleteItem(id) {
+        this.items = this.items.filter((item) => {
+            item.id !== id;
+        });
     }
 
-    getItem(id) {
+    getItemFromId(id) {
         let item = this.items.filter((item) => {
-            return item.id = id
+            return item.id === id
         });
         return item
     }
