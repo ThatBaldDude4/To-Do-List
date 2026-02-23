@@ -1,14 +1,18 @@
 export class Item {
-    constructor(title, description) {
+    constructor({title, description}) {
         this.title = title;
         this.description = description
     }
 
-    updateInfo(type, info) {
+    updateInfo(fields) {
         const allowed = ["title", "description"];
-        if (!allowed.includes(type)) {
-            throw Error("Type doesn't exist");
-        };
-        this[type] = info;
+        for (const key of Object.keys(fields)) {
+            if (!allowed.includes(key)) {
+                throw new Error("New fields not allowed for Item(s)")
+            }
+        }
+
+        const updatedItem = new Item({...this, ...fields})
+        return updatedItem
     }
 }
