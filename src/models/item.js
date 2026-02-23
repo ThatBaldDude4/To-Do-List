@@ -5,15 +5,13 @@ export class Item {
         this.id = crypto.randomUUID()
     }
 
-    getNewUpdate(fields) {
+    updateItem(fields) {
         const allowed = ["title", "description"];
         for (const key of Object.keys(fields)) {
             if (!allowed.includes(key)) {
-                throw new Error("New fields not allowed for Item(s)")
-            }
+                throw new Error("New keys not allowed for Items");
+            };
+            this[key] = fields[key];
         }
-
-        const updatedItem = new Item({...this, ...fields})
-        return updatedItem
     }
 }
