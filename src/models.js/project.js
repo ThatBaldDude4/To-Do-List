@@ -13,4 +13,11 @@ export class Project {
         const index = this.items.indexOf(item);
         this.items.splice(index, 1);
     }
+
+    getItem(id) {
+        let item = this.items.filter((item) => {
+            return item.id = id
+        });
+        return item
+    }
 }
