@@ -1,5 +1,5 @@
 export class Project {
-    constructor(title) {
+    constructor({title}) {
         this.title = title;
         this.items = [];
         this.id = crypto.randomUUID();

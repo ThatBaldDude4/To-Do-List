@@ -2,9 +2,10 @@ export class Item {
     constructor({title, description}) {
         this.title = title;
         this.description = description
+        this.id = crypto.randomUUID()
     }
 
-    updateInfo(fields) {
+    getNewUpdate(fields) {
         const allowed = ["title", "description"];
         for (const key of Object.keys(fields)) {
             if (!allowed.includes(key)) {
