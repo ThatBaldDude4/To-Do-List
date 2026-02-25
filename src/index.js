@@ -1,2 +1,35 @@
-import { createItem } from "./controller/manager.js";
 import {styles} from "./ui/styles.css";
+import renderProject from "./ui/renderProjects.js"
+import {createProject} from "./models/project.js";
+import {projectForm} from "./ui/projectForm.js";
+import { dispatch } from "./controller.js";
+import { render } from "./models/render.js";
+
+const app = document.getElementById("app-container");
+const addProjectBtn = document.getElementById("add-project-btn");
+
+addProjectBtn.addEventListener("click", (e) => {
+    let btn = e.target.closest("[data-action]");
+    let action = btn.dataset.action;
+    dispatch({type: action})
+})
+
+const storageArr = [];
+
+const project1 = createProject("Project 1");
+const project2 = createProject("Project 2");
+const project3 = createProject("Project 3");
+
+storageArr.push(project1);
+storageArr.push(project2);
+storageArr.push(project3);
+
+export const state = {
+    view: "home",
+    projects: [],
+    currentProjectId: null,
+};
+
+state.projects = storageArr;
+console.log(state.projects);
+render(state);

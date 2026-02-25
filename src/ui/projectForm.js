@@ -15,11 +15,11 @@ export function projectForm() {
     titleInput.classList.add("title-input");
 
     submitBtn.textContent = "SUBMIT";
-    submitBtn.classList.add("submit-btn");
+    submitBtn.setAttribute("data-action", "submit-project");
     submitBtn.type = "submit";
 
     cancelBtn.textContent = "CANCEL";
-    cancelBtn.classList.add("cancel-btn");
+    cancelBtn.setAttribute("data-action", "cancel-form");
     cancelBtn.type = "button";
 
     titlelabel.appendChild(titleInput);
