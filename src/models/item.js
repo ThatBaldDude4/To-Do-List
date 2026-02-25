@@ -15,3 +15,8 @@ export class Item {
         }
     }
 }
+
+export function createItem(title, description) {
+    const item = new Item({title, description});
+    return item;
+};

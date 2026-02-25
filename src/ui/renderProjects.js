@@ -19,13 +19,22 @@ function renderItem(item) {
 export default function renderProject(project) {
     const container = document.createElement("div");
     const h2 = document.createElement("h2");
+    const addItemBtn = document.createElement("button");
     const itemContainer = document.createElement("div");
 
     container.setAttribute("data-project-id", project.id);
+    container.classList.add("project-container");
+
     itemContainer.setAttribute("data-items-for", project.id);
+
     h2.textContent = project.title;
     h2.classList.add("project-title");
+
+    addItemBtn.classList.add("add-item-btn");
+    addItemBtn.textContent = "Add Item";
+
     container.appendChild(h2);
+    container.appendChild(addItemBtn);
 
     project.items.forEach((item) => {
         let itemHtml = renderItem(item);

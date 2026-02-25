@@ -1,0 +1,8 @@
+* {
+    background-color: black;
+    color: orange;
+}
+
+.project-container {
+    border: 2px solid red;
+}

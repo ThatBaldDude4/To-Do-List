@@ -23,3 +23,8 @@ export class Project {
         return item
     }
 }
+
+export function createProject(title) {
+    const project = new Project({title});
+    return project;
+};
