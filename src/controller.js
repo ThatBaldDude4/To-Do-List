@@ -11,6 +11,9 @@ export function dispatch(action) {
         case "cancel-form":
             state.view = "home";
             break;
+        case "open-item-form":
+            state.view = "open-item-form";
+            break;
     };
 
     render(state);

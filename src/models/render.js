@@ -1,5 +1,8 @@
 import  renderProject from "../ui/renderProjects.js";
 import { projectForm } from "../ui/projectForm.js";
+import { itemForm } from "../ui/itemForm.js";
+
+const appContainer = document.getElementById("app-container");
 
 export function render(state) {
     let view = state.view;
@@ -9,13 +12,12 @@ export function render(state) {
     if (view === "open-project-form") {
         renderProjectForm();
     };
-    if (view === "item-form") {
-
+    if (view === "open-item-form") {
+        renderItemForm();
     };
 };
 
 function renderHome(projects) {
-    const appContainer = document.getElementById("app-container");
     appContainer.innerHTML = "";
 
     projects.forEach((project) => {
@@ -25,9 +27,15 @@ function renderHome(projects) {
 };
 
 function renderProjectForm() {
-    const appContainer = document.getElementById("app-container");
     appContainer.innerHTML = "";
 
     const form = projectForm();
+    appContainer.appendChild(form);
+}
+
+function renderItemForm() {
+    appContainer.innerHTML = "";
+
+    const form = itemForm();
     appContainer.appendChild(form);
 }
