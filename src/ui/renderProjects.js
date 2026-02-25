@@ -32,6 +32,7 @@ export default function renderProject(project) {
 
     addItemBtn.classList.add("add-item-btn");
     addItemBtn.textContent = "Add Item";
+    addItemBtn.setAttribute("data-action", "open-item-form");
 
     container.appendChild(h2);
     container.appendChild(addItemBtn);

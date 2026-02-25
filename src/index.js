@@ -5,14 +5,12 @@ import {projectForm} from "./ui/projectForm.js";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
 
-const app = document.getElementById("app-container");
-const addProjectBtn = document.getElementById("add-project-btn");
-
-addProjectBtn.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
     let btn = e.target.closest("[data-action]");
+    if (!btn) {return console.log("no data-action")};
     let action = btn.dataset.action;
-    dispatch({type: action})
-})
+    dispatch({type: action});
+});
 
 const storageArr = [];
 
