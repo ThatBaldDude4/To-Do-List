@@ -14,6 +14,8 @@ export function dispatch(action) {
         case "open-item-form":
             state.view = "open-item-form";
             break;
+        case "submit-project":
+            
     };
 
     render(state);

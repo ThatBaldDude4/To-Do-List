@@ -1,10 +1,12 @@
 export function projectForm() {
-    const container = document.createElement("div");
+    const container = document.createElement("form");
     const heading = document.createElement("h2");
     const titlelabel = document.createElement("label");
     const titleInput = document.createElement("input");
     const submitBtn = document.createElement("button");
     const cancelBtn = document.createElement("button");
+
+    container.setAttribute("data-form", "project");
 
     heading.textContent = "Project Form";
 

@@ -6,11 +6,30 @@ import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
 
 document.addEventListener("click", (e) => {
+    if (e.target.closest("button[type='submit'], input[type='submit'")) {return}
     let btn = e.target.closest("[data-action]");
     if (!btn) {return console.log("no data-action")};
     let action = btn.dataset.action;
     dispatch({type: action});
 });
+
+document.addEventListener("submit", (e) => {
+    e.preventDefault()
+    console.log("submit fired");
+    let form = e.target.closest("form[data-form]");
+    if (!form) {return console.log("no form data")};
+
+    if (form.dataset.form === "project") {
+        console.log("this is a form");
+        // add code for saving project
+    }
+
+    if (form.dataset.form === "item") {
+        // add code for submitting item
+    }
+
+    console.log("event fired");
+})
 
 const storageArr = [];
 

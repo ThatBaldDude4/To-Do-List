@@ -1,5 +1,5 @@
 export function itemForm() {
-    const container = document.createElement("div");
+    const container = document.createElement("form");
     const heading = document.createElement("h2");
     const titlelabel = document.createElement("label");
     const titleInput = document.createElement("input");
@@ -7,6 +7,8 @@ export function itemForm() {
     const descriptionInput = document.createElement("input");
     const submitBtn = document.createElement("button");
     const cancelBtn = document.createElement("button");
+
+    container.setAttribute("data-form", "item");
 
     heading.textContent = "Item Form";
 
