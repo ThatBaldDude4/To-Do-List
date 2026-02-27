@@ -19,8 +19,8 @@ export function dispatch(action) {
     };
 
     if (actionType === "submit-item-form") {
-        let {title, description} = action.payload;
-        let item = createItem(title, description);
+        let {title, description, priority} = action.payload;
+        let item = createItem(title, description, priority);
         const project = state.projects.find(
             p => p.id === state.currentProjectId
         );

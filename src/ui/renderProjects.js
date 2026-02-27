@@ -2,6 +2,7 @@ function renderItem(item, projectId) {
     const container = document.createElement("div");
     const title = document.createElement("h3");
     const text = document.createElement("p");
+    const priority = document.createElement("div");
     const deleteBtn = document.createElement("button");
 
     container.setAttribute("data-item-id", item.id);
@@ -11,6 +12,8 @@ function renderItem(item, projectId) {
     title.textContent = item.title;
     text.textContent = item.description;
 
+    priority.textContent = `${item.priority} Priority`;
+
     deleteBtn.textContent = "Delete Item";
     deleteBtn.type = "button";
     deleteBtn.setAttribute("data-project-id", projectId);
@@ -19,6 +22,7 @@ function renderItem(item, projectId) {
 
     container.appendChild(title);
     container.appendChild(text);
+    container.appendChild(priority);
     container.appendChild(deleteBtn);
 
     return container;
