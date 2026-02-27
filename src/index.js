@@ -1,8 +1,7 @@
 import {styles} from "./ui/styles.css";
-import {createProject} from "./models/project.js";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
-import { createItem } from "./models/item.js";
+
 
 export const state = {
     view: "home",
@@ -11,7 +10,7 @@ export const state = {
 };
 
 document.addEventListener("click", (e) => {
-    if (e.target.closest("button[type='submit'], input[type='submit]'")) {return}
+    if (e.target.closest("button[type='submit'], input[type='submit']")) {return}
     let btn = e.target.closest("[data-action]");
     if (!btn) {return console.log("no data-action")};
     let action = btn.dataset.action;
@@ -31,9 +30,8 @@ document.addEventListener("submit", (e) => {
     if (form.dataset.form === "project") {
         const title = form.querySelector("input").value;
         if (!title) {return};
-        let project = createProject(title);
-        state.projects.push(project);
-        dispatch({type: "home"});
+
+        dispatch({type: "submit-project-form", payload: {title: title}});
         // add code for saving project
     }
 
@@ -42,12 +40,8 @@ document.addEventListener("submit", (e) => {
         const description = form.querySelector(".item-description-input").value;
         if (!title || !description) {return};
 
-        let item = createItem(title, description);
-        const project = state.projects.find(
-            p => p.id === state.currentProjectId
-        );
-        project.addItem(item);
-        dispatch({type: "home"});
+        
+        dispatch({type: "submit-item-form", payload: {title: title, description: description}});
         // add code for submitting item
     }
 
