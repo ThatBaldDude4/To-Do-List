@@ -3,6 +3,10 @@ export function itemForm() {
     const heading = document.createElement("h2");
     const titlelabel = document.createElement("label");
     const titleInput = document.createElement("input");
+    const select = document.createElement("select");
+    const lowPriorityOption = document.createElement("option");
+    const mediumPriorityOption = document.createElement("option");
+    const highPriorityOption = document.createElement("option");
     const descriptionLabel = document.createElement("label");
     const descriptionInput = document.createElement("input");
     const submitBtn = document.createElement("button");
@@ -24,6 +28,17 @@ export function itemForm() {
     descriptionInput.type = "input";
     descriptionInput.classList.add("item-description-input");
 
+    select.textContent = "Priority:";
+    lowPriorityOption.textContent = "Low";
+    mediumPriorityOption.textContent = "Medium";
+    highPriorityOption.textContent = "High";
+    lowPriorityOption.value = "Low";
+    mediumPriorityOption.value = "Medium";
+    highPriorityOption.value = "High";
+    select.appendChild(lowPriorityOption);
+    select.appendChild(mediumPriorityOption);
+    select.appendChild(highPriorityOption);
+
     submitBtn.textContent = "SUBMIT";
     submitBtn.setAttribute("data-action", "submit-form");
     submitBtn.type = "submit";
@@ -38,6 +53,7 @@ export function itemForm() {
     container.appendChild(heading);
     container.appendChild(titlelabel);
     container.appendChild(descriptionLabel);
+    container.appendChild(select);
     container.appendChild(submitBtn);
     container.appendChild(cancelBtn);
 
