@@ -42,8 +42,9 @@ document.addEventListener("submit", (e) => {
     if (form.dataset.form === "item") {
         const title = form.querySelector(".item-title-input").value;
         const description = form.querySelector(".item-description-input").value;
+        const priority = form.querySelector("select").value;
         if (!title || !description) {return};
-        dispatch({type: "submit-item-form", payload: {title: title, description: description}});
+        dispatch({type: "submit-item-form", payload: {title: title, description: description, priority: priority}});
     }
     console.log("event fired");
 })
