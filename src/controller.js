@@ -37,9 +37,10 @@ export function dispatch(action) {
 
     if (actionType === "delete-item") {
         let {projectId, itemId} = action.payload;
-
+        if (!projectId || !itemId) {return};
         let project = state.projects.find((proj) => proj.id === projectId);
         project.deleteItem(itemId);
+        state.view = "home";
     }
 
     render(state);

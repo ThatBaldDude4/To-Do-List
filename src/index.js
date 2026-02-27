@@ -15,10 +15,17 @@ document.addEventListener("click", (e) => {
     let action = btn.dataset.action;
     
     if (action === "open-item-form") {
-        state.currentProjectId = e.target.closest("[data-project-id]").dataset.projectId;;
+        state.currentProjectId = e.target.closest("[data-project-id]").dataset.projectId;
     }
-        
-    dispatch({type: action});
+    let projectId = null;
+    let itemId = null;
+    if (action === "delete-item") {
+        projectId = e.target.closest("[data-project-id]").dataset.projectId;
+        itemId = e.target.closest("[data-item-id]").dataset.itemId;
+    }
+    console.log(projectId);
+    console.log(itemId, "itemid")   
+    dispatch({type: action, payload: {projectId: projectId, itemId: itemId}});
 });
 
 document.addEventListener("submit", (e) => {

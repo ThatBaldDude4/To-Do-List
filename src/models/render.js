@@ -19,7 +19,7 @@ export function render(state) {
 
 function renderHome(projects) {
     appContainer.innerHTML = "";
-
+    console.log("inside renderHome", projects);
     projects.forEach((project) => {
         let projectHtml = renderProject(project);
         appContainer.appendChild(projectHtml);

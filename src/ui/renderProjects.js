@@ -45,6 +45,7 @@ export default function renderProject(project) {
     container.appendChild(h2);
     container.appendChild(addItemBtn);
 
+    console.log(project, "inside renderProject")
     project.items.forEach((item) => {
         let itemHtml = renderItem(item, project.id);
         itemContainer.appendChild(itemHtml);
