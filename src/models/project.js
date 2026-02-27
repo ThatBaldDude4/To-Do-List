@@ -10,7 +10,7 @@ export class Project {
     }
 
     deleteItem(id) {
-        this.items = this.items.filter((item) => {
+        this.items = this.items.find((item) => {
             return item.id !== id;
         });
         console.log(this.items)

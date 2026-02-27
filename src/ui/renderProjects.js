@@ -11,11 +11,15 @@ function renderItem(item, projectId) {
     title.textContent = item.title;
     text.textContent = item.description;
 
-    deleteBtn.type = "delete";
+    deleteBtn.textContent = "Delete Item";
+    deleteBtn.type = "button";
     deleteBtn.setAttribute("data-project-id", projectId);
+    deleteBtn.setAttribute("data-action", "delete-item");
+    deleteBtn.classList.add("delete-btn");
 
     container.appendChild(title);
     container.appendChild(text);
+    container.appendChild(deleteBtn);
 
     return container;
 }
@@ -42,7 +46,7 @@ export default function renderProject(project) {
     container.appendChild(addItemBtn);
 
     project.items.forEach((item) => {
-        let itemHtml = renderItem(item, projectId);
+        let itemHtml = renderItem(item, project.id);
         itemContainer.appendChild(itemHtml);
     });
 
