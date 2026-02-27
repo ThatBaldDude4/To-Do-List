@@ -25,7 +25,7 @@ export function itemForm() {
     descriptionInput.classList.add("item-description-input");
 
     submitBtn.textContent = "SUBMIT";
-    submitBtn.setAttribute("data-action", "submit-item");
+    submitBtn.setAttribute("data-action", "submit-form");
     submitBtn.type = "submit";
 
     cancelBtn.textContent = "CANCEL";

@@ -8,14 +8,17 @@ export function dispatch(action) {
         case "open-project-form":
             state.view = "open-project-form";
             break;
+        case "home":
+            state.view = "home";
+            break;
         case "cancel-form":
             state.view = "home";
             break;
         case "open-item-form":
             state.view = "open-item-form";
             break;
-        case "submit-project":
-            
+        case "submit-form":
+            state.view = ""
     };
 
     render(state);
