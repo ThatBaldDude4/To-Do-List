@@ -1,7 +1,8 @@
-function renderItem(item) {
+function renderItem(item, projectId) {
     const container = document.createElement("div");
     const title = document.createElement("h3");
     const text = document.createElement("p");
+    const deleteBtn = document.createElement("button");
 
     container.setAttribute("data-item-id", item.id);
     title.classList.add("item-title");
@@ -9,6 +10,9 @@ function renderItem(item) {
 
     title.textContent = item.title;
     text.textContent = item.description;
+
+    deleteBtn.type = "delete";
+    deleteBtn.setAttribute("data-project-id", projectId);
 
     container.appendChild(title);
     container.appendChild(text);
@@ -38,7 +42,7 @@ export default function renderProject(project) {
     container.appendChild(addItemBtn);
 
     project.items.forEach((item) => {
-        let itemHtml = renderItem(item);
+        let itemHtml = renderItem(item, projectId);
         itemContainer.appendChild(itemHtml);
     });
 

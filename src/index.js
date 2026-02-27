@@ -2,7 +2,6 @@ import {styles} from "./ui/styles.css";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
 
-
 export const state = {
     view: "home",
     projects: [],
@@ -30,21 +29,15 @@ document.addEventListener("submit", (e) => {
     if (form.dataset.form === "project") {
         const title = form.querySelector("input").value;
         if (!title) {return};
-
         dispatch({type: "submit-project-form", payload: {title: title}});
-        // add code for saving project
     }
 
     if (form.dataset.form === "item") {
         const title = form.querySelector(".item-title-input").value;
         const description = form.querySelector(".item-description-input").value;
         if (!title || !description) {return};
-
-        
         dispatch({type: "submit-item-form", payload: {title: title, description: description}});
-        // add code for submitting item
     }
-
     console.log("event fired");
 })
 
