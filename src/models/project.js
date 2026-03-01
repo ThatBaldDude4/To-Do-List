@@ -4,24 +4,17 @@ export class Project {
         this.items = [];
         this.id = crypto.randomUUID();
     }
+};
 
-    addItem(item) {
-        this.items.push(item);
-    }
+export function addItemToProject(state, item) {
+    let project = state.projects.find(proj => proj.id === state.currentProjectId);
+    project.items.push(item)
+}
 
-    deleteItem(id) {
-        this.items = this.items.filter((item) => {
-            return item.id !== id;
-        })
-        console.log(this.items)
-    }
-
-    getItemFromId(id) {
-        let item = this.items.filter((item) => {
-            return item.id === id
-        });
-        return item
-    }
+export function deleteItem(project, itemId) {
+    project.items = project.items.filter((i) => {
+        return i.id !== itemId;
+    })
 }
 
 export function createProject(title) {

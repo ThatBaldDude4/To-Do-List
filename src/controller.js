@@ -1,7 +1,9 @@
 import { state } from "./index.js";
 import { render } from "./models/render.js";
-import { createItem } from "./models/item.js";
+import { createItem, updateItem } from "./models/item.js";
 import {createProject} from "./models/project.js";
+import { saveItem } from "./models/storage.js";
+import { addItemToProject, deleteItem } from "./models/project.js"
 
 export function dispatch(action) {
     let actionType = action.type;
@@ -19,12 +21,14 @@ export function dispatch(action) {
     };
 
     if (actionType === "submit-item-form") {
-        let {title, description, priority} = action.payload;
-        let item = createItem(title, description, priority);
+        let {title, description, priority, dueDate} = action.payload;
+        let item = createItem(title, description, priority, dueDate);
         const project = state.projects.find(
             p => p.id === state.currentProjectId
         );
-        project.addItem(item);
+        console.log(project);
+        addItemToProject(state, item)
+        saveItem(state.projects);
         state.view = "home";
     };
 
@@ -32,6 +36,7 @@ export function dispatch(action) {
         let {title} = action.payload;
         let project = createProject(title);
         state.projects.push(project);
+        saveItem(state.projects);
         state.view = "home";
     };
 
@@ -39,7 +44,8 @@ export function dispatch(action) {
         let {projectId, itemId} = action.payload;
         if (!projectId || !itemId) {return};
         let project = state.projects.find((proj) => proj.id === projectId);
-        project.deleteItem(itemId);
+        deleteItem(project, itemId);
+        saveItem(state.projects);
         state.view = "home";
     }
 
@@ -52,8 +58,9 @@ export function dispatch(action) {
     if (actionType === "submit-item-edit-form") {
         let project = state.projects.find(project => project.id === state.currentProjectId);
         let item = project.items.find(item => item.id === state.currentItemId);
-        let {title, description, priority} = action.payload;
-        item.updateItem({title, description, priority});
+        let {title, description, priority, dueDate} = action.payload;
+        updateItem(item, {title, description, priority, dueDate});
+        saveItem(state.projects);
         state.view = "home";
     }
 

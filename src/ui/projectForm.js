@@ -17,7 +17,6 @@ export function projectForm() {
     titleInput.classList.add("title-input");
 
     submitBtn.textContent = "SUBMIT";
-
     submitBtn.type = "submit";
 
     cancelBtn.textContent = "CANCEL";

@@ -3,6 +3,7 @@ function renderItem(item, projectId) {
     const title = document.createElement("h3");
     const text = document.createElement("p");
     const priority = document.createElement("div");
+    const dueDate = document.createElement("p");
     const deleteBtn = document.createElement("button");
     const editBtn = document.createElement("button");
 
@@ -14,6 +15,9 @@ function renderItem(item, projectId) {
     text.textContent = item.description;
 
     priority.textContent = `${item.priority} Priority`;
+
+    dueDate.textContent = `Due ${item.dueDate}`;
+    console.log(item)
 
     deleteBtn.textContent = "Delete Item";
     deleteBtn.type = "button";
@@ -29,6 +33,7 @@ function renderItem(item, projectId) {
     container.appendChild(title);
     container.appendChild(text);
     container.appendChild(priority);
+    container.appendChild(dueDate);
     container.appendChild(deleteBtn);
     container.appendChild(editBtn);
 

@@ -16,7 +16,9 @@ document.addEventListener("click", (e) => {
     let action = btn.dataset.action;
     
     if (action === "open-item-form") {
+        console.log("action is open-item")
         state.currentProjectId = e.target.closest("[data-project-id]").dataset.projectId;
+        console.log(state.currentProjectId);
     }
     let projectId = null;
     let itemId = null;
@@ -42,11 +44,13 @@ document.addEventListener("submit", (e) => {
         const title = form.querySelector(".item-title-input").value;
         const description = form.querySelector(".item-description-input").value;
         const priority = form.querySelector("select").value;
+        const dueDate = form.elements["dueDate"].value;
+        console.log(dueDate)
         if (!title || !description) {return};
         dispatch(
             {
                 type: state.view === "edit-item" ? "submit-item-edit-form" : "submit-item-form" , 
-                payload: {title: title, description: description, priority: priority}
+                payload: {title: title, description: description, priority: priority, dueDate: dueDate}
             }
         );
     };

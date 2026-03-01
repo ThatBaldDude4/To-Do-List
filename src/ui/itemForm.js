@@ -11,6 +11,8 @@ export function itemForm() {
     const highPriorityOption = document.createElement("option");
     const descriptionLabel = document.createElement("label");
     const descriptionInput = document.createElement("input");
+    const dueDateLabel = document.createElement("label");
+    const dateInput = document.createElement("input");
     const submitBtn = document.createElement("button");
     const cancelBtn = document.createElement("button");
 
@@ -29,6 +31,12 @@ export function itemForm() {
 
     descriptionInput.type = "input";
     descriptionInput.classList.add("item-description-input");
+
+    dueDateLabel.textContent = "Due Date";
+    dateInput.type = "date";
+    dateInput.name = "dueDate";
+    dateInput.classList.add("due-date-input");
+    dueDateLabel.appendChild(dateInput);
 
     select.textContent = "Priority:";
     lowPriorityOption.textContent = "Low";
@@ -62,11 +70,13 @@ export function itemForm() {
         if (!item) {throw new Error("Item not found - itemForm.js")};
         titleInput.value = item.title;
         descriptionInput.value = item.description;
+        dateInput.value = item.dueDate;
     }
 
     container.appendChild(heading);
     container.appendChild(titlelabel);
     container.appendChild(descriptionLabel);
+    container.appendChild(dueDateLabel);
     container.appendChild(select);
     container.appendChild(submitBtn);
     container.appendChild(cancelBtn);
