@@ -43,5 +43,18 @@ export function dispatch(action) {
         state.view = "home";
     }
 
+    if (actionType === "edit-item") {
+        state.currentItemId = action.payload.itemId;
+        state.view = "edit-item";
+    };
+
+    if (actionType === "submit-item-edit-form") {
+        let project = state.projects.find(project => project.id === state.currentProjectId);
+        let item = project.items.find(item => item.id === state.currentItemId);
+        let {title, description} = action.payload;
+        item.updateItem({title, description});
+        state.view = "home";
+    }
+
     render(state);
 }

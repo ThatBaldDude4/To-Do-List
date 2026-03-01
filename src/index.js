@@ -6,6 +6,7 @@ export const state = {
     view: "home",
     projects: [],
     currentProjectId: null,
+    currentItemId: null,
 };
 
 document.addEventListener("click", (e) => {
@@ -19,12 +20,10 @@ document.addEventListener("click", (e) => {
     }
     let projectId = null;
     let itemId = null;
-    if (action === "delete-item") {
+    if (action === "delete-item" || action === "edit-item") {
         projectId = e.target.closest("[data-project-id]").dataset.projectId;
         itemId = e.target.closest("[data-item-id]").dataset.itemId;
-    }
-    console.log(projectId);
-    console.log(itemId, "itemid")   
+    }  
     dispatch({type: action, payload: {projectId: projectId, itemId: itemId}});
 });
 
@@ -44,8 +43,14 @@ document.addEventListener("submit", (e) => {
         const description = form.querySelector(".item-description-input").value;
         const priority = form.querySelector("select").value;
         if (!title || !description) {return};
-        dispatch({type: "submit-item-form", payload: {title: title, description: description, priority: priority}});
-    }
+        dispatch(
+            {
+                type: state.view === "edit-item" ? "submit-item-edit-form" : "submit-item-form" , 
+                payload: {title: title, description: description, priority: priority}
+            }
+        );
+    };
+
     console.log("event fired");
 })
 

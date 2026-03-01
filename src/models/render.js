@@ -15,6 +15,9 @@ export function render(state) {
     if (view === "open-item-form") {
         renderItemForm();
     };
+    if (view === "edit-item") {
+        renderItemForm();
+    }
 };
 
 function renderHome(projects) {

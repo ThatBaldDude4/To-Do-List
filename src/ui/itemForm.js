@@ -1,3 +1,5 @@
+import { state } from "../index.js";
+
 export function itemForm() {
     const container = document.createElement("form");
     const heading = document.createElement("h2");
@@ -49,6 +51,18 @@ export function itemForm() {
 
     titlelabel.appendChild(titleInput);
     descriptionLabel.appendChild(descriptionInput);
+
+    if (state.view === "edit-item") {
+        let project = state.projects.find((project) => {
+            return project.id === state.currentProjectId;
+        });
+        let item = project.items.find((item) => {
+            return item.id === state.currentItemId;
+        });
+        titleInput.value = item.title;
+        descriptionInput.value = item.description;
+        submitBtn.setAttribute("data-action", "submit-item-edit-form");
+    }
 
     container.appendChild(heading);
     container.appendChild(titlelabel);

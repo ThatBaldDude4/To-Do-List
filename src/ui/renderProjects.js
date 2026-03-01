@@ -4,6 +4,7 @@ function renderItem(item, projectId) {
     const text = document.createElement("p");
     const priority = document.createElement("div");
     const deleteBtn = document.createElement("button");
+    const editBtn = document.createElement("button");
 
     container.setAttribute("data-item-id", item.id);
     title.classList.add("item-title");
@@ -20,10 +21,16 @@ function renderItem(item, projectId) {
     deleteBtn.setAttribute("data-action", "delete-item");
     deleteBtn.classList.add("delete-btn");
 
+    editBtn.textContent = "Edit";
+    editBtn.type = "button";
+    editBtn.setAttribute("data-action", "edit-item");
+    editBtn.classList.add("edit-btn");
+
     container.appendChild(title);
     container.appendChild(text);
     container.appendChild(priority);
     container.appendChild(deleteBtn);
+    container.appendChild(editBtn);
 
     return container;
 }
