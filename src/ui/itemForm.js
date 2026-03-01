@@ -42,7 +42,6 @@ export function itemForm() {
     select.appendChild(highPriorityOption);
 
     submitBtn.textContent = "SUBMIT";
-    submitBtn.setAttribute("data-action", "submit-form");
     submitBtn.type = "submit";
 
     cancelBtn.textContent = "CANCEL";
@@ -56,12 +55,13 @@ export function itemForm() {
         let project = state.projects.find((project) => {
             return project.id === state.currentProjectId;
         });
+        if (!project) {throw new Error("Project not found - itemForm.js")};
         let item = project.items.find((item) => {
             return item.id === state.currentItemId;
         });
+        if (!item) {throw new Error("Item not found - itemForm.js")};
         titleInput.value = item.title;
         descriptionInput.value = item.description;
-        submitBtn.setAttribute("data-action", "submit-item-edit-form");
     }
 
     container.appendChild(heading);

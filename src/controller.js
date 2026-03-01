@@ -6,7 +6,7 @@ import {createProject} from "./models/project.js";
 export function dispatch(action) {
     let actionType = action.type;
 
-    if (actionType === "home" || "cancel-form") {
+    if (actionType === "home" || actionType === "cancel-form") {
         state.view = "home";
     };
 
@@ -45,14 +45,15 @@ export function dispatch(action) {
 
     if (actionType === "edit-item") {
         state.currentItemId = action.payload.itemId;
+        state.currentProjectId = action.payload.projectId;
         state.view = "edit-item";
     };
 
     if (actionType === "submit-item-edit-form") {
         let project = state.projects.find(project => project.id === state.currentProjectId);
         let item = project.items.find(item => item.id === state.currentItemId);
-        let {title, description} = action.payload;
-        item.updateItem({title, description});
+        let {title, description, priority} = action.payload;
+        item.updateItem({title, description, priority});
         state.view = "home";
     }
 

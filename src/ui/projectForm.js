@@ -17,7 +17,7 @@ export function projectForm() {
     titleInput.classList.add("title-input");
 
     submitBtn.textContent = "SUBMIT";
-    submitBtn.setAttribute("data-action", "submit-project");
+
     submitBtn.type = "submit";
 
     cancelBtn.textContent = "CANCEL";

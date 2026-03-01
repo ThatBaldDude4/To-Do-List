@@ -7,7 +7,7 @@ export class Item {
     }
 
     updateItem(fields) {
-        const allowed = ["title", "description"];
+        const allowed = ["title", "description", "priority"];
         for (const key of Object.keys(fields)) {
             if (!allowed.includes(key)) {
                 throw new Error("New keys not allowed for Items");
