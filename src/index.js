@@ -2,6 +2,7 @@ import {styles} from "./ui/styles.css";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
 import { getProjects } from "./models/storage.js";
+import { createProject } from "./models/project.js";
 
 export const state = {
     view: "home",
@@ -13,7 +14,7 @@ export const state = {
 document.addEventListener("click", (e) => {
     if (e.target.closest("button[type='submit'], input[type='submit']")) {return}
     let btn = e.target.closest("[data-action]");
-    if (!btn) {return console.log("no data-action")};
+    if (!btn) {return};
     let action = btn.dataset.action;
     
     if (action === "open-item-form" || action === "delete-project") {
@@ -59,4 +60,10 @@ document.addEventListener("submit", (e) => {
     console.log("event fired");
 })
 state.projects = getProjects();
+
+if (state.projects.length === 0) {
+    let project = createProject("TO-DO by Taylor");
+    state.projects.push(project);
+}
+
 render(state);
