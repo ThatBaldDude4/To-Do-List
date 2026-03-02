@@ -8,7 +8,6 @@ const appContainer = document.getElementById("app-container");
 export function render(state) {
     let view = state.view;
     if (view === "home") {
-        state.projects = getProjects();
         renderHome(state.projects);
     };
     if (view === "open-project-form") {

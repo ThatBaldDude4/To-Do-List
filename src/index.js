@@ -1,6 +1,7 @@
 import {styles} from "./ui/styles.css";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
+import { getProjects } from "./models/storage.js";
 
 export const state = {
     view: "home",
@@ -58,5 +59,5 @@ document.addEventListener("submit", (e) => {
 
     console.log("event fired");
 })
-
+state.projects = getProjects();
 render(state);

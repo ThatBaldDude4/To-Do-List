@@ -1,6 +1,6 @@
 import { state } from "./index.js";
 import { render } from "./models/render.js";
-import { createItem, updateItem } from "./models/item.js";
+import { createItem } from "./models/item.js";
 import {createProject} from "./models/project.js";
 import { saveItem } from "./models/storage.js";
 
@@ -57,7 +57,7 @@ export function dispatch(action) {
         let project = state.projects.find(project => project.id === state.currentProjectId);
         let item = project.items.find(item => item.id === state.currentItemId);
         let {title, description, priority, dueDate} = action.payload;
-        updateItem(item, {title, description, priority, dueDate});
+        item.updateItem({title, description, priority, dueDate});
         saveItem(state.projects);
         state.view = "home";
     };
@@ -65,7 +65,7 @@ export function dispatch(action) {
     if (actionType === "toggle-item-info") {
         let project = state.projects.find(project => project.id === action.payload.projectId);
         let item = project.items.find(item => item.id === action.payload.itemId);
-        updateItem(item, {expanded: !item.expanded});
+        item.updateItem({expanded: !item.expanded});
         saveItem(state.projects);
         state.view = "home";
     }
