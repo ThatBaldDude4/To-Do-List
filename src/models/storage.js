@@ -5,6 +5,17 @@ export function saveItem(projects) {
 
 export function getProjects() {
     let data = localStorage.getItem("projects");
-    return JSON.parse(data);
+    data = JSON.parse(data);
+    data.map((project) => {
+        project.addItemToProject = function(item) {
+            this.items.push(item);
+        };
+        project.deleteItem = function(itemId) {
+            this.items = this.items.filter((item) => {
+                return item.id !== itemId;
+            })
+        }
+    })
+    return data;
 }
 

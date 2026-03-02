@@ -3,7 +3,6 @@ import { render } from "./models/render.js";
 import { createItem, updateItem } from "./models/item.js";
 import {createProject} from "./models/project.js";
 import { saveItem } from "./models/storage.js";
-import { addItemToProject, deleteItem } from "./models/project.js"
 
 export function dispatch(action) {
     let actionType = action.type;
@@ -26,8 +25,7 @@ export function dispatch(action) {
         const project = state.projects.find(
             p => p.id === state.currentProjectId
         );
-        console.log(project);
-        addItemToProject(state, item)
+        project.addItemToProject(item)
         saveItem(state.projects);
         state.view = "home";
     };
@@ -44,7 +42,7 @@ export function dispatch(action) {
         let {projectId, itemId} = action.payload;
         if (!projectId || !itemId) {return};
         let project = state.projects.find((proj) => proj.id === projectId);
-        deleteItem(project, itemId);
+        project.deleteItem(itemId);
         saveItem(state.projects);
         state.view = "home";
     }
