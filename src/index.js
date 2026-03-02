@@ -16,12 +16,11 @@ document.addEventListener("click", (e) => {
     if (!btn) {return console.log("no data-action")};
     let action = btn.dataset.action;
     
-    if (action === "open-item-form") {
-        console.log("action is open-item")
+    if (action === "open-item-form" || action === "delete-project") {
         state.currentProjectId = e.target.closest("[data-project-id]").dataset.projectId;
     }
 
-    let projectId = null;
+    let projectId = null
     let itemId = null;
     
     if (action === "delete-item" || action === "edit-item" || action === "toggle-item-info") {

@@ -45,6 +45,14 @@ export function dispatch(action) {
         project.deleteItem(itemId);
         saveItem(state.projects);
         state.view = "home";
+    };
+
+    if (actionType === "delete-project") {
+        state.projects = state.projects.filter((project) => {
+            return project.id !== state.currentProjectId;
+        });
+        saveItem(state.projects);
+        state.view = "home";
     }
 
     if (actionType === "edit-item") {

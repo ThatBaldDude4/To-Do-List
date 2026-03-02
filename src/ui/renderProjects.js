@@ -56,6 +56,7 @@ function renderItem(item, projectId) {
 export default function renderProject(project) {
     const container = document.createElement("div");
     const h2 = document.createElement("h2");
+    const deleteProjectBtn = document.createElement("button");
     const addItemBtn = document.createElement("button");
     const itemContainer = document.createElement("div");
 
@@ -67,11 +68,16 @@ export default function renderProject(project) {
     h2.textContent = project.title;
     h2.classList.add("project-title");
 
+    deleteProjectBtn.setAttribute("data-action", "delete-project");
+    deleteProjectBtn.textContent = "Delete Project";
+    deleteProjectBtn.type = "button";
+
     addItemBtn.classList.add("add-item-btn");
     addItemBtn.textContent = "Add Item";
     addItemBtn.setAttribute("data-action", "open-item-form");
 
     container.appendChild(h2);
+    container.appendChild(deleteProjectBtn);
     container.appendChild(addItemBtn);
 
     console.log(project, "inside renderProject")
