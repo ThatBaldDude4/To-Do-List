@@ -5,6 +5,7 @@ export class Item {
         this.priority = priority;
         this.id = crypto.randomUUID();
         this.dueDate = dueDate;
+        this.expanded = false;
     }
 }
 
@@ -14,7 +15,7 @@ export function createItem(title, description, priority, dueDate) {
 };
 
 export function updateItem(item, fields) {
-    const allowed = ["title", "description", "priority", "dueDate"];
+    const allowed = ["title", "description", "priority", "dueDate", "expanded"];
     for (const key of Object.keys(fields)) {
         if (!allowed.includes(key)) {
             throw new Error("New keys not allowed for Items");

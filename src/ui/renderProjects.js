@@ -2,22 +2,31 @@ function renderItem(item, projectId) {
     const container = document.createElement("div");
     const title = document.createElement("h3");
     const text = document.createElement("p");
+    const toggleInfoBtn = document.createElement("button");
+    const infoContainer = document.createElement("div");
     const priority = document.createElement("div");
     const dueDate = document.createElement("p");
     const deleteBtn = document.createElement("button");
     const editBtn = document.createElement("button");
 
     container.setAttribute("data-item-id", item.id);
+    container.classList.add("item-container");
     title.classList.add("item-title");
     text.classList.add("item-description");
 
     title.textContent = item.title;
     text.textContent = item.description;
 
+    infoContainer.classList.add("info-container");
+
+    toggleInfoBtn.type = "button";
+    toggleInfoBtn.setAttribute("data-action", "toggle-item-info");
+    toggleInfoBtn.setAttribute("data-project-id", projectId);
+    toggleInfoBtn.textContent = "View Info"
+
     priority.textContent = `${item.priority} Priority`;
 
     dueDate.textContent = `Due ${item.dueDate}`;
-    console.log(item)
 
     deleteBtn.textContent = "Delete Item";
     deleteBtn.type = "button";
@@ -30,12 +39,16 @@ function renderItem(item, projectId) {
     editBtn.setAttribute("data-action", "edit-item");
     editBtn.classList.add("edit-btn");
 
+    infoContainer.appendChild(priority);
+    infoContainer.appendChild(dueDate);
+    infoContainer.appendChild(deleteBtn);
+    infoContainer.appendChild(editBtn);
+
     container.appendChild(title);
     container.appendChild(text);
-    container.appendChild(priority);
-    container.appendChild(dueDate);
-    container.appendChild(deleteBtn);
-    container.appendChild(editBtn);
+    container.appendChild(toggleInfoBtn);
+    container.appendChild(infoContainer);
+    infoContainer.hidden = !item.expanded;
 
     return container;
 }

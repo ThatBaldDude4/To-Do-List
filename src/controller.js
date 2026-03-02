@@ -62,6 +62,14 @@ export function dispatch(action) {
         updateItem(item, {title, description, priority, dueDate});
         saveItem(state.projects);
         state.view = "home";
+    };
+
+    if (actionType === "toggle-item-info") {
+        let project = state.projects.find(project => project.id === action.payload.projectId);
+        let item = project.items.find(item => item.id === action.payload.itemId);
+        updateItem(item, {expanded: !item.expanded});
+        saveItem(state.projects);
+        state.view = "home";
     }
 
     render(state);

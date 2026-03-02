@@ -7,3 +7,4 @@ export function getProjects() {
     let data = localStorage.getItem("projects");
     return JSON.parse(data);
 }
+
