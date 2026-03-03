@@ -56,8 +56,6 @@ document.addEventListener("submit", (e) => {
             }
         );
     };
-
-    console.log("event fired");
 })
 state.projects = getProjects();
 
