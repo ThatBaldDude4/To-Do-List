@@ -17,6 +17,16 @@ export function getProjects() {
             })
         };
 
+        project.updateProject = function(fields) {
+            const allowed = ["title", "expanded"];
+            for (const key of Object.keys(fields)) {
+            if (!allowed.includes(key)) {
+                throw new Error("New keys not allowed for Items");
+            };
+            this[key] = fields[key];
+            }
+        }  
+
         const allowed = ["title", "description", "priority", "dueDate", "expanded"];
         project.items.forEach((item) => {
             item.updateItem = function(fields) {

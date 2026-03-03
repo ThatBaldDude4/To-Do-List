@@ -17,7 +17,7 @@ document.addEventListener("click", (e) => {
     if (!btn) {return};
     let action = btn.dataset.action;
     
-    if (action === "open-item-form" || action === "delete-project") {
+    if (action === "open-item-form" || action === "delete-project" || action === "toggle-project-items") {
         state.currentProjectId = e.target.closest("[data-project-id]").dataset.projectId;
     }
 
@@ -27,7 +27,8 @@ document.addEventListener("click", (e) => {
     if (action === "delete-item" || action === "edit-item" || action === "toggle-item-info") {
         projectId = e.target.closest("[data-project-id]").dataset.projectId;
         itemId = e.target.closest("[data-item-id]").dataset.itemId;
-    } 
+    }
+
     dispatch({type: action, payload: {projectId: projectId, itemId: itemId}});
 });
 
@@ -57,11 +58,11 @@ document.addEventListener("submit", (e) => {
         );
     };
 })
-state.projects = getProjects();
+
 
 if (state.projects.length === 0) {
     let project = createProject("TO-DO by Taylor");
     state.projects.push(project);
 }
-
+state.projects = getProjects();
 render(state);

@@ -58,6 +58,7 @@ export default function renderProject(project) {
     const h2 = document.createElement("h2");
     const deleteProjectBtn = document.createElement("button");
     const addItemBtn = document.createElement("button");
+    const toggleItemsBtn = document.createElement("button");
     const itemContainer = document.createElement("div");
 
     container.setAttribute("data-project-id", project.id);
@@ -75,15 +76,23 @@ export default function renderProject(project) {
     addItemBtn.classList.add("add-item-btn");
     addItemBtn.textContent = "Add Item";
     addItemBtn.setAttribute("data-action", "open-item-form");
+    addItemBtn.type = "button";
+
+    toggleItemsBtn.textContent = "View Projects";
+    toggleItemsBtn.type = "button";
+    toggleItemsBtn.setAttribute("data-action", "toggle-project-items");
 
     container.appendChild(h2);
     container.appendChild(deleteProjectBtn);
     container.appendChild(addItemBtn);
+    container.appendChild(toggleItemsBtn);
 
     project.items.forEach((item) => {
         let itemHtml = renderItem(item, project.id);
         itemContainer.appendChild(itemHtml);
     });
+
+    itemContainer.hidden = !project.expanded;
 
     container.appendChild(itemContainer);
 
