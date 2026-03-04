@@ -1,8 +1,8 @@
 export class Project {
-    constructor({title}) {
+    constructor({title, items, id}) {
         this.title = title;
-        this.items = [];
-        this.id = crypto.randomUUID();
+        this.items = items ?? [];
+        this.id = id ?? crypto.randomUUID();
         this.expanded = false;
     }
 
@@ -27,7 +27,7 @@ export class Project {
     };
 };
 
-export function createProject(title) {
-    const project = new Project({title});
+export function createProject(title,items, id) {
+    const project = new Project({title, items, id});
     return project;
 };

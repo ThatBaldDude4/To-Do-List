@@ -1,9 +1,9 @@
 export class Item {
-    constructor({title, description, priority, dueDate}) {
+    constructor({title, description, priority, dueDate, id}) {
         this.title = title;
         this.description = description;
         this.priority = priority;
-        this.id = crypto.randomUUID();
+        this.id = id ?? crypto.randomUUID();
         this.dueDate = dueDate;
         this.expanded = false;
     }
@@ -19,8 +19,8 @@ export class Item {
     }
 }
 
-export function createItem(title, description, priority, dueDate) {
-    const item = new Item({title, description, priority, dueDate });
+export function createItem(title, description, priority, dueDate, id) {
+    const item = new Item({title, description, priority, dueDate, id });
     return item;
 };
 

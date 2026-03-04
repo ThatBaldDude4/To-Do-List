@@ -1,7 +1,6 @@
 import  renderProject from "../ui/renderProjects.js";
 import { projectForm } from "../ui/projectForm.js";
 import { itemForm } from "../ui/itemForm.js";
-import { getProjects } from "./storage.js";
 
 const appContainer = document.getElementById("app-container");
 

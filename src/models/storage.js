@@ -1,4 +1,5 @@
-
+import { createItem } from "./item.js";
+import { createProject } from "./project.js";
 
 export const storage = {
     saveProjects(projects) {
@@ -11,41 +12,16 @@ export const storage = {
     },
 
     hydrateProjects(projects) {
-        if (!projects) {return []}
-        const allowed = ["title", "description", "priority", "dueDate", "expanded"];
-        projects.forEach((project) => {
-            project.addItemToProject = function(item) {
-                this.items.push(item);
-            };
+        if (!projects) return [];
 
-            project.deleteItem = function(itemId) {
-                this.items = this.items.filter((item) => {
-                    return item.id !== itemId;
-                })
-            };
+        return projects.map((p) => {
+            const project = createProject(p.title, p.items, p.id);
 
-            project.updateProject = function(fields) {
-                const allowed = ["title", "expanded"];
-                for (const key of Object.keys(fields)) {
-                if (!allowed.includes(key)) {
-                    throw new Error("New keys not allowed for Items");
-                };
-                this[key] = fields[key];
-                }
-            };
+            project.items = (p.items ?? []).map((i) =>
+            createItem(i.title, i.description, i.priority, i.dueDate, i.id)
+            );
 
-            project.items.forEach((item) => {
-                item.updateItem = function(fields) {
-                    for (const key of Object.keys(fields)) {
-                        if (!allowed.includes(key)) {
-                            throw new Error("New keys not allowed for Items");
-                        };
-                        this[key] = fields[key];
-                    }
-                }
-            })
-        })
-        return projects;
-    },
-}
-
+            return project;
+        });
+    }
+};
