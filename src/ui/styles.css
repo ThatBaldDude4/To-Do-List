@@ -1,6 +1,14 @@
 * {
     background-color: black;
+    box-sizing: border-box;
     color: orange;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .project-container {
@@ -12,4 +20,22 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.item-container > h3 {
+    display: block;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@media (min-width: 800px) {
+    #app-container {
+        flex-direction: row;
+    }
 }
