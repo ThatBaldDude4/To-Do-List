@@ -2,7 +2,7 @@ import { state } from "./index.js";
 import { render } from "./models/render.js";
 import { createItem } from "./models/item.js";
 import {createProject} from "./models/project.js";
-import { saveItem } from "./models/storage.js";
+import { storage } from "./models/storage.js";
 
 export function dispatch(action) {
     let actionType = action.type;
@@ -26,7 +26,7 @@ export function dispatch(action) {
             p => p.id === state.currentProjectId
         );
         project.addItemToProject(item)
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     };
 
@@ -34,7 +34,7 @@ export function dispatch(action) {
         let {title} = action.payload;
         let project = createProject(title);
         state.projects.push(project);
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     };
 
@@ -43,7 +43,7 @@ export function dispatch(action) {
         if (!projectId || !itemId) {return};
         let project = state.projects.find((proj) => proj.id === projectId);
         project.deleteItem(itemId);
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     };
 
@@ -51,7 +51,7 @@ export function dispatch(action) {
         state.projects = state.projects.filter((project) => {
             return project.id !== state.currentProjectId;
         });
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     }
 
@@ -66,7 +66,7 @@ export function dispatch(action) {
         let item = project.items.find(item => item.id === state.currentItemId);
         let {title, description, priority, dueDate} = action.payload;
         item.updateItem({title, description, priority, dueDate});
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     };
 
@@ -74,14 +74,14 @@ export function dispatch(action) {
         let project = state.projects.find(project => project.id === action.payload.projectId);
         let item = project.items.find(item => item.id === action.payload.itemId);
         item.updateItem({expanded: !item.expanded});
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     };
 
     if (actionType === "toggle-project-items") {
         let project = state.projects.find(project => project.id === state.currentProjectId);
         project.updateProject({expanded: !project.expanded});
-        saveItem(state.projects);
+        storage.saveProjects(state.projects);
         state.view = "home";
     }
 

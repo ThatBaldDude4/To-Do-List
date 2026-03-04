@@ -14,7 +14,7 @@ export class Project {
         };
         this[key] = fields[key];
         }
-    };
+    }
 
     addItemToProject(item) {
         this.items.push(item);

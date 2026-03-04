@@ -7,6 +7,16 @@ export class Item {
         this.dueDate = dueDate;
         this.expanded = false;
     }
+
+    updateItem(fields) {
+        const allowed = ["title", "description", "priority", "dueDate", "expanded"];
+        for (const key of Object.keys(fields)) {
+            if (!allowed.includes(key)) {
+                throw new Error("New keys not allowed for Items");
+            };
+            this[key] = fields[key];
+        }
+    }
 }
 
 export function createItem(title, description, priority, dueDate) {

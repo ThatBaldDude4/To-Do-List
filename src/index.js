@@ -1,7 +1,7 @@
 import {styles} from "./ui/styles.css";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
-import { getProjects } from "./models/storage.js";
+import { storage } from "./models/storage.js";
 import { createProject } from "./models/project.js";
 
 export const state = {
@@ -27,8 +27,7 @@ document.addEventListener("click", (e) => {
     if (action === "delete-item" || action === "edit-item" || action === "toggle-item-info") {
         projectId = e.target.closest("[data-project-id]").dataset.projectId;
         itemId = e.target.closest("[data-item-id]").dataset.itemId;
-    }
-
+    } 
     dispatch({type: action, payload: {projectId: projectId, itemId: itemId}});
 });
 
@@ -58,11 +57,11 @@ document.addEventListener("submit", (e) => {
         );
     };
 })
-
+state.projects = storage.hydrateProjects(storage.getProjects());
 
 if (state.projects.length === 0) {
     let project = createProject("TO-DO by Taylor");
     state.projects.push(project);
 }
-state.projects = getProjects();
+
 render(state);
