@@ -3,6 +3,8 @@ function renderItem(item, projectId) {
     const title = document.createElement("h3");
     const text = document.createElement("p");
     const toggleInfoBtn = document.createElement("button");
+    const checkbox = document.createElement("input");
+    const checkboxLabel = document.createElement("label");
     const infoContainer = document.createElement("div");
     const priority = document.createElement("div");
     const dueDate = document.createElement("p");
@@ -22,7 +24,12 @@ function renderItem(item, projectId) {
     toggleInfoBtn.type = "button";
     toggleInfoBtn.setAttribute("data-action", "toggle-item-info");
     toggleInfoBtn.setAttribute("data-project-id", projectId);
-    toggleInfoBtn.textContent = "View Info"
+    toggleInfoBtn.textContent = "View Info";
+
+    checkboxLabel.textContent = "Completed";
+    checkbox.type = "checkbox";
+    checkbox.classList.add("checkbox");
+    checkboxLabel.appendChild(checkbox);
 
     priority.textContent = `${item.priority} Priority`;
 
@@ -47,6 +54,7 @@ function renderItem(item, projectId) {
     container.appendChild(title);
     container.appendChild(text);
     container.appendChild(toggleInfoBtn);
+    container.appendChild(checkboxLabel);
     container.appendChild(infoContainer);
     infoContainer.hidden = !item.expanded;
 
