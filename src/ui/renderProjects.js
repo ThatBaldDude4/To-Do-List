@@ -29,6 +29,8 @@ function renderItem(item, projectId) {
     checkboxLabel.textContent = "Completed";
     checkbox.type = "checkbox";
     checkbox.classList.add("checkbox");
+    checkbox.checked = item.complete;
+    checkbox.setAttribute("data-action", "check-item-box");
     checkboxLabel.appendChild(checkbox);
 
     priority.textContent = `${item.priority} Priority`;

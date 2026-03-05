@@ -83,6 +83,14 @@ export function dispatch(action) {
         project.updateProject({expanded: !project.expanded});
         storage.saveProjects(state.projects);
         state.view = "home";
+    };
+
+    if (actionType === "check-item-box") {
+        let project = state.projects.find(project => project.id === action.payload.projectId);
+        let item = project.items.find(item => item.id === action.payload.itemId);
+        item.updateItem({complete: !item.complete});
+        storage.saveProjects(state.projects);
+        state.view = "home";
     }
 
     render(state);
