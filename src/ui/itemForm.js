@@ -17,12 +17,14 @@ export function itemForm() {
     const cancelBtn = document.createElement("button");
 
     container.setAttribute("data-form", "item");
+    container.classList.add("form-container");
 
     heading.textContent = "Item Form";
 
     titlelabel.textContent = "Item Title:";
-    titleInput.classList.add("item-title-label");
 
+    titleInput.classList.add("item-title-label");
+    titleInput.required = true;
     titleInput.type = "input";
     titleInput.classList.add("item-title-input");
 
@@ -31,11 +33,13 @@ export function itemForm() {
 
     descriptionInput.type = "input";
     descriptionInput.classList.add("item-description-input");
+    descriptionInput.required = true;
 
     dueDateLabel.textContent = "Due Date";
     dateInput.type = "date";
     dateInput.name = "dueDate";
     dateInput.classList.add("due-date-input");
+    dateInput.required = true;
     dueDateLabel.appendChild(dateInput);
 
     select.textContent = "Priority:";

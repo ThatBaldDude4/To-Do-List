@@ -7,6 +7,7 @@ export function projectForm() {
     const cancelBtn = document.createElement("button");
 
     container.setAttribute("data-form", "project");
+    container.classList.add("form-container")
 
     heading.textContent = "Project Form";
 
