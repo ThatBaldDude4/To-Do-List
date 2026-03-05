@@ -24,7 +24,7 @@ document.addEventListener("click", (e) => {
     let projectId = null
     let itemId = null;
     
-    if (action === "delete-item" || action === "edit-item" || action === "toggle-item-info") {
+    if (action === "delete-item" || action === "edit-item" || action === "toggle-item-info" || action === "check-item-box") {
         projectId = e.target.closest("[data-project-id]").dataset.projectId;
         itemId = e.target.closest("[data-item-id]").dataset.itemId;
     } 

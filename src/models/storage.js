@@ -18,7 +18,7 @@ export const storage = {
             const project = createProject(p.title, p.items, p.id);
 
             project.items = (p.items ?? []).map((i) =>
-            createItem(i.title, i.description, i.priority, i.dueDate, i.id)
+            createItem(i.title, i.description, i.priority, i.dueDate, i.id, i.complete)
             );
 
             return project;
