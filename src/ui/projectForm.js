@@ -14,7 +14,7 @@ export function projectForm() {
     titlelabel.textContent = "Project Title:";
     titlelabel.classList.add("title-label");
 
-    titleInput.type = "input";
+    titleInput.type = "text";
     titleInput.classList.add("title-input");
 
     submitBtn.textContent = "SUBMIT";

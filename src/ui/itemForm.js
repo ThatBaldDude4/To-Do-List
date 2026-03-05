@@ -25,13 +25,13 @@ export function itemForm() {
 
     titleInput.classList.add("item-title-label");
     titleInput.required = true;
-    titleInput.type = "input";
+    titleInput.type = "text";
     titleInput.classList.add("item-title-input");
 
     descriptionLabel.textContent = "Item description";
     descriptionLabel.classList.add("item-description-label");
 
-    descriptionInput.type = "input";
+    descriptionInput.type = "text";
     descriptionInput.classList.add("item-description-input");
     descriptionInput.required = true;
 

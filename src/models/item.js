@@ -24,13 +24,3 @@ export function createItem(title, description, priority, dueDate, id, complete) 
     const item = new Item({title, description, priority, dueDate, id, complete });
     return item;
 };
-
-export function updateItem(item, fields) {
-    const allowed = ["title", "description", "priority", "dueDate", "expanded"];
-    for (const key of Object.keys(fields)) {
-        if (!allowed.includes(key)) {
-            throw new Error("New keys not allowed for Items");
-        };
-        item[key] = fields[key];
-    }
-}

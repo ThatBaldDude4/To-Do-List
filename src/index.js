@@ -1,4 +1,4 @@
-import {styles} from "./ui/styles.css";
+import "./ui/styles.css";
 import { dispatch } from "./controller.js";
 import { render } from "./models/render.js";
 import { storage } from "./models/storage.js";
@@ -47,7 +47,7 @@ document.addEventListener("submit", (e) => {
         const description = form.querySelector(".item-description-input").value;
         const priority = form.querySelector("select").value;
         const dueDate = form.elements["dueDate"].value;
-        console.log(dueDate)
+
         if (!title || !description) {return};
         dispatch(
             {
