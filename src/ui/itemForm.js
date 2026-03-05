@@ -71,6 +71,7 @@ export function itemForm() {
         titleInput.value = item.title;
         descriptionInput.value = item.description;
         dateInput.value = item.dueDate;
+        select.value = item.priority;
     }
 
     container.appendChild(heading);
